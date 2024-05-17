@@ -1,26 +1,46 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <Header/>
+    <MainContent/>
+    <AboutContent/>
+    <ThemesContent/>
+    <Members/>
+    <Footer/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/header/Header';
+import MainContent  from './components/main/MainContent';
+import Footer from './components/footer/Footer';
+import AboutContent from "@/components/main/AboutContent";
+import ThemesContent from "@/components/main/ThemesContent";
+import Members from "@/components/main/Members";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    MainContent,
+    AboutContent,
+    ThemesContent,
+    Members,
+    Footer
+  },
+  mounted() {
+    window.addEventListener('beforeunload', this.scrollToTop);
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    }
+  },
+  beforeUnmount() {
+    window.removeEventListener('beforeunload', this.scrollToTop);
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>
